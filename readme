@@ -1,0 +1,132 @@
+应急响应脚本
+工具介绍
+Linux工具
+Chkrootkit
+Chkrootkit：文件对比工具。使用系统命令检查系统命令文件有没有被篡改。
+在操作系统刚被安装之后，或者说服务器开放之前，备份 chkrootkit 使用的系统命令，在一些必要的时候（怀疑系统命令已被修改的情况等等），让 chkrootkit 使用初始备份的系统命令进行工作。
+安装包：chkrootkit.tar.gz
+编译：make sense
+使用：
+备份系统初始命令
+Mkdir –p /usr/share/.commands/
+cp $(which --skip-alias awk cut echo find egrep id head ls netstat ps strings sed uname ssh) /usr/share/.commands/
+检测病毒
+./chkrootkit 
+./chkrootkit -p /usr/share/.commands/  #commands是一个存放原生命令的目录。检查过程中调用这个目录里面的命令而不再使用系统命令（有被篡改的风险）
+Unhide
+Unhide：隐藏进程及端口查询工具。使用多种方式查询隐藏进程
+安装包：unhide-20121229.tgz
+centos安装：yum -y install epel-release
+yum install -y unhide 
+ubuntu安装：apt-get -y install  unhide 
+编译：
+If you ARE using a Linux kernel >= 2.6
+      gcc -Wall -O2 --static -pthread unhide-linux*.c unhide-output.c -o unhide-linux
+      gcc -Wall -O2 --static unhide_rb.c -o unhide_rb
+      gcc -Wall -O2 --static unhide-tcp.c unhide-tcp-fast.c unhide-output.c -o unhide-tcp
+      ln -s unhide-linux unhide
+Else (Linux < 2.6, *BSD, Solaris and other Unice)
+      gcc --static unhide-posix.c -o unhide-posix
+      ln -s unhide unhide-posix
+使用
+./unhide sys >>/tmp/unhide.log
+./unhide brute >>/tmp/unhide.log
+./unhide proc >>/tmp/unhide.log
+./unhide procall >>/tmp/unhide.log
+./unhide procfs >>/tmp/unhide.log
+./unhide quick >>/tmp/unhide.log
+./unhide reverse >>/tmp/unhide.log
+./unhide-tcp >>/tmp/unhide.log
+unhide.tar.gz 文件夹是已编译好的。
+Clamav
+Clamav：Linux下病毒查杀程序。
+安装包：clamav-0.99.2.tar.gz
+编译安装
+ yum install openssl* -y
+./configure  --with-user=root --with-group=root
+make 
+make install
+centos安装：yum -y install epel-release
+yum install -y clamav
+ubuntu安装：apt-get -y install  clamav
+使用
+配置文件
+将freshclam.conf 文件复制到/usr/local/etc/
+1、升级
+freshclam        (升级病毒库)   保证你的LINUX可以正常上网哦.
+mkdir -p /var/lib/clamav/
+文件clamdb.tar.gz 是2017.6.12升级的病毒库文件。解压之后放在/var/lib/clamav/下。
+2、杀毒
+clamscan        --查杀当前目录下的文件
+clamscan -r     --查杀当前目录的所有文件及目录 
+clamscan dir    --查杀dir目录 
+clamscan -r dir --查杀目录dir下的所有文件及目录
+nohup clamscan -r --bell -i / >> /tmp/clamav.log 
+卸载
+./configure --with-user=root --with-group=root
+sudo make uninstall
+rkhunter
+rkhunter：Linux下杀毒软件。
+安装包：rkhunter-1.4.2.tar.gz
+安装
+    ./installer.sh –install
+centos安装：yum -y install epel-release
+yum install -y rkhunter
+ubuntu安装：apt-get -y install  rkhunter
+使用
+rkhunter -c --sk >>check/rkhunter.log 
+卸载
+	./installer.sh --remove
+Windows
+365门神程序：365MSInst_V2.0.exe 。知道创宇出品防御产品
+官网：https://www.yunaq.com/365menshen/
+安全狗程序：safedogfwqV5.0，safedogIISV4.0.exe，safedogwzApache.exe
+官网：http://www.safedog.cn/
+隐藏进程排查工具：unhide.exe
+官网：http://www.unhide-forensics.info/
+日志查看工具：elex_setup.exe
+官网：https://eventlogxp.com/
+脚本介绍：
+脚本文件
+liunx_security_check.sh
+offline.sh
+检查内容
+Linux
+1.系统信息（系统版本，启动时间，内存情况，网络情况，系统文件）
+2.异常用户
+3.系统服务
+4.开机启动项
+5.计划任务
+6.远程服务
+7.进程列表
+8.网络连接
+9.异常文件
+10.登录信息
+11.网马脚本
+12.系统关键文件
+13.系统隐藏进程与端口
+14.后门文件
+15.系统日志
+Windows
+Windows 排查有文件排查，用户排查，进程排查，服务排查，日志排除。
+文件排查：可以使用安全软件进行病毒以及后门网马的排查
+用户排查：查看系统所有用户及创建时间。
+进程排查：进程的异常表现有CPU，内存，文件位置，文件名称
+服务排查：服务异常表现有名称，描述，启动类型
+日志排除。重点是安全日志 ，服务日志 以及应用日志。从电脑管理找日志，然后导出查看更加方便。
+注意事项
+脚本中的应用日志信息排查语句注释掉了。应用日志信息要根据进程及服务信息确定目录位置，然后使用脚本中的语句排查。
+找到异常进程的PID 之后，可以 ls –la /proc/pid  查看相关信息。结合lsof + L1，可以发现更多信息。
+注意保存截图，注意备份恶意文件。
+根据脚本排查出的信息确定攻击的精确时间，然后根据时间再去查询对应日志，可以把攻击梳理的更加清晰。
+可以使用Strings 查看文件中的字符串，针对二进制文件，进程文件更有用。
+Stat 输出说明
+Access time(atime):是指取用文件的时间，所谓取用，常见的操作有：使用编辑器查看文件内容，使用cat命令显示文件内容，使用cp命令把该文件（即来源文件）复制成其他文件，或者在这个文件上运用grep sed more less tail head 等命令，凡是读取而不修改文件的操作，均衡改变文件的Access time.  
+Modify time(mtime)：是指修改文件内容的时间，只要文件内容有改动（如使用转向输出或转向附加的方式）或存盘的操作，就会改变文件的Modify time,平常我们使用ls –l查看文件时，显示的时间就是Modify time  
+Change time(ctime):是指文件属性或文件位置改动的时间，如使用chmod，chown,mv指令集使用ln做文件的硬是连接，就会改变文件的Change time.  
+Note：
+如果修改文件（使用编辑器存盘或使用） >>转向操作）,则Modify time和Change time 会同步更新成写入的时间，但Access time不变。  
+如果执行touch文件，则3种时间全部改变  
+使用ln –s做文件的软式连接，会改变文件的取用时间  。
+使用ls –la查看一般文件，不会更改这三种时间，但如果这个文件时符号链接文件，则会改变取用的时间（Access time）
+
