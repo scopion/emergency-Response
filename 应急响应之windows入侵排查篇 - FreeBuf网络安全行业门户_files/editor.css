@@ -1,0 +1,279 @@
+.mce-content-body:not([dir=rtl])[data-mce-placeholder]:not(.mce-visualblocks)::before {
+  top: 2px;
+}
+
+#tinymce-editor {
+  max-width: 725px;
+  font-size: 15px;
+  padding: 0px 0px 15px;
+  border-radius: 4px;
+  background: #ffffff;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  color: #333333;
+  word-break: break-word;
+  white-space: wrap;
+  overflow: auto;
+}
+
+/* div p ul li 通用样式 */
+#tinymce-editor div,
+#tinymce-editor p {
+  max-width: 100%;
+  line-height: 26px;
+  font-size: 15px;
+  color: #333333;
+  overflow: auto;
+  word-break: break-word;
+  white-space: wrap;
+}
+
+/* div */
+#tinymce-editor div {
+  margin-bottom: 5px;
+
+}
+
+/* p */
+#tinymce-editor p {
+  max-width: 100%;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  overflow: auto;
+}
+
+#tinymce-editor p code,
+#tinymce-editor p span,
+#tinymce-editor p b,
+#tinymce-editor p i,
+#tinymce-editor p em {
+  white-space: wrap;
+  word-break: break-word;
+}
+
+#tinymce-editor p code {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+}
+
+
+/* h1 h2 h3 h4 h5 h6  */
+#tinymce-editor h4,
+#tinymce-editor h5,
+#tinymce-editor h6 {
+  margin: 0;
+  padding: 0;
+  line-height: 26px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+#tinymce-editor h1,
+#tinymce-editor h2,
+#tinymce-editor h3 {
+  margin-bottom: 15px;
+  word-break: break-word;
+}
+
+#tinymce-editor h1 {
+  max-width: 100%;
+  line-height: 22px;
+  font-size: 18px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+  padding-left: 15px;
+  margin: 25px 0;
+  position: relative;
+}
+
+#tinymce-editor h1::before {
+  content: "";
+  width: 4px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #2db362;
+}
+
+#tinymce-editor h2 {
+  max-width: 100%;
+  line-height: 22px;
+  font-size: 18px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+  padding-left: 15px;
+  margin: 25px 0;
+  position: relative;
+}
+
+#tinymce-editor h2::before {
+  content: "";
+  width: 4px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #2db362;
+}
+
+#tinymce-editor h3 {
+  max-width: 100%;
+  line-height: 26px;
+  font-size: 16px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+  margin: 20px 0;
+  word-break: break-word;
+}
+
+#tinymce-editor blockquote {
+  max-width: 100%;
+  line-height: 26px;
+  font-size: 14px;
+  color: #595959;
+  background: #f8f8f8;
+  border-radius: 3px;
+  word-break: break-word;
+  border: none;
+  padding: 15px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+#tinymce-editor blockquote div,
+#tinymce-editor blockquote p {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+
+/* pre code */
+#tinymce-editor pre {
+  display: block;
+  max-width: 690px;
+  line-height: 26px;
+  max-height: 600px;
+  overflow: auto;
+  background: #f8f8f8;
+  color: #595959;
+  padding: 10px;
+  margin: 15px auto 15px;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+#tinymce-editor pre code {
+  display: block;
+  max-width: 100%;
+  padding: 10px 15px;
+  line-height: 26px;
+  font-size: 14px;
+  color: #595959;
+  border-radius: 6px;
+  overflow: auto;
+  background-color: transparent;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+#tinymce-editor pre code div,
+#tinymce-editor pre code p {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+
+/* ul li  */
+#tinymce-editor ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  padding-left: 40px;
+  color: #868686;
+  overflow: auto;
+}
+
+#tinymce-editor ul li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+  word-break: break-word;
+}
+
+/* img */
+#tinymce-editor img {
+  display: block;
+  margin: 15px auto 10px;
+  max-width: 635px;
+  height: auto;
+  vertical-align: top;
+}
+
+/* table */
+#tinymce-editor table {
+  display: block;
+  width: 680px;
+  margin: 20px auto 20px;
+}
+
+#tinymce-editor table thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  line-height: 30px;
+  background: #f5f5f5;
+}
+
+#tinymce-editor table tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  line-height: 26px;
+}
+
+#tinymce-editor table th {
+  text-align: center;
+  font-weight: 550;
+  border: 1px solid #cccccc;
+  border-bottom: none;
+  background: #f5f5f5;
+}
+
+#tinymce-editor table td {
+  text-align: left;
+  padding: 5px 5px;
+  margin: 0;
+  border: 1px solid #cccccc;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+/* a */
+#tinymce-editor a {
+  color: #2774c9;
+  word-break: break-word;
+}
+
+/* strong b i em */
+#tinymce-editor strong,
+#tinymce-editor b,
+#tinymce-editor i,
+#tinymce-editor em {
+  font-style: normal;
+  font-weight: normal;
+}
+
+#tinymce-editor strong,
+#tinymce-editor b {
+  font-weight: 700;
+}
